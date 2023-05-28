@@ -1,5 +1,7 @@
+const User = require('../model/user');
 const registerUser = (req, res)=>{
-    res.send('register from callback');
+    const {handle, email, password, category} = req.body;
+    console.log(req.body);
 }
 
 const loginUser = (req, res)=>{
