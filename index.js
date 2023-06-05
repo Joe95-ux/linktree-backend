@@ -12,13 +12,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 // connect to db
 connectDB();
-app.get('/api/register', registerUser);
-app.get('/api/login', loginUser);
+app.post('/api/register', registerUser);
+app.post('/api/login', loginUser);
 
 
 
 
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 4000;
 
 app.listen(port, ()=> console.log("server has started on port" + port));

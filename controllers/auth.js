@@ -1,7 +1,16 @@
 const User = require('../model/user');
-const registerUser = (req, res)=>{
+const registerUser = async (req, res)=>{
     const {handle, email, password, category} = req.body;
-    console.log(req.body);
+    const defaultLink = {url:"", title:"social", icon:""};
+    const user = await User.create({handle, email, password, role:category, link:[defaultLink]});
+
+
+
+
+
+
+    res.json({message: 'Success', status: '200'});
+    
 }
 
 const loginUser = (req, res)=>{
