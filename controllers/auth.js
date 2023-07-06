@@ -26,7 +26,18 @@ const registerUser = async (req, res) => {
   }
 };
 
-const loginUser = (req, res) => {
+const loginUser = async (req, res) => {
+  const {email, password} = req.body;
+  try {
+    const user = await User.findOne({email:email, password:password});
+    if(!user){
+      return res.json({status: 'not found', error:'Invalid credentials'});
+    }
+    const token = jwt.sign({email:email}, process.env.SECRET_JWT_KEY);
+    return res.json({message: 'user found', status: 'success', 'token': token, id: user._id});
+  } catch (error) {
+    return res.json({message: error.message, status: 'error'});
+  }
   res.send("login from callback");
 };
 
