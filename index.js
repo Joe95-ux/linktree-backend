@@ -4,7 +4,8 @@ const connectDB = require("./config/db");
 const cors = require('cors');
 const app = express();
 const mongoose = require("mongoose");
-const {registerUser, loginUser, dashboardData} = require('./controllers/auth');
+const {registerUser, loginUser} = require('./controllers/auth');
+const {dashBoardData} = require('./controllers/dashboard');
 
 app.use(cors());
 app.use(express.static(__dirname + "/public"));
@@ -15,7 +16,7 @@ connectDB();
 app.post('/api/register', registerUser);
 app.post('/api/login', loginUser);
 
-app.post('/data/dashboard', dashboardData);
+app.post('/data/dashboard', dashBoardData);
 
 
 

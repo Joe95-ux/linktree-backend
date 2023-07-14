@@ -2,7 +2,7 @@ const User = require("../model/user");
 const jwt = require("jsonwebtoken");
 const registerUser = async (req, res) => {
   const { handle, email, password, category } = req.body;
-  const defaultLink = { url: "", title: "social", icon: "" };
+  const defaultLink = { url: "what2watch.net", title: "what2watch", icon: "" };
   try {
     const user = await User.create({
       handle,
@@ -41,26 +41,6 @@ const loginUser = async (req, res) => {
   res.send("login from callback");
 };
 
-const dashBoardData = async(req, res)=>{
-  const {tokenMail } = req.body;
-  console.log(tokenMail);
-  try {
-      const decodedTokenMail = jwt_decode(tokenMail, process.env.SECRET_JWT);
-      const email = decodedTokenMail.email;
-      console.log('decoded email', email)
-      const user = await User.findOne({email: email});
-      const userData = {
-          name: user.name,
-          role: user.role,
-          bio: user.bio,
-          avatar: user.avatar,
-          handle: user.handle,
-          links: user.links.length
-      }
-      return res.json({message: 'User loaded', userData, status: 'Okay'})
-  } catch (err) {
-      return res.json({status: 'error', error: err.message})
-  }
-}
 
-module.exports = { registerUser, loginUser, dashboardData };
+
+module.exports = { registerUser, loginUser};
