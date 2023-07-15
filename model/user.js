@@ -8,6 +8,7 @@ const userSchema = new Schema ({
     avatar: {type: String, default:'https://cdn-icons-png.flaticon.com/512/4140/4140048.png'},
     password: {type: String, required: true},
     role: {type: String, enum: ['Creator', 'Brand', 'Agency', 'admin'], default: 'Creator'},
+    handle: {type: String, required: true, unique: true},
     links: [{
         url: {type: String},
         title: {type: String},

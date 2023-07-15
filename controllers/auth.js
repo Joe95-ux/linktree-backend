@@ -2,14 +2,14 @@ const User = require("../model/user");
 const jwt = require("jsonwebtoken");
 const registerUser = async (req, res) => {
   const { handle, email, password, category } = req.body;
-  const defaultLink = { url: "what2watch.net", title: "what2watch", icon: "" };
+  const defaultLink = { url: "https://what2watch.net", title: "what2watch", icon: "" };
   try {
     const user = await User.create({
       handle,
       email,
       password,
       role: category,
-      link: [defaultLink]
+      links: [defaultLink]
     });
     const token = jwt.sign({ email: email }, process.env.SECRET_JWT_KEY);
     return res.json({
