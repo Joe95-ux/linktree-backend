@@ -6,6 +6,7 @@ const app = express();
 const mongoose = require("mongoose");
 const {registerUser, loginUser} = require('./controllers/auth');
 const {dashBoardData} = require('./controllers/dashboard');
+const {getUserData} = require('./controllers/getUserData');
 
 app.use(cors());
 app.use(express.static(__dirname + "/public"));
@@ -17,6 +18,7 @@ app.post('/api/register', registerUser);
 app.post('/api/login', loginUser);
 
 app.post('/data/dashboard', dashBoardData);
+app.get('/get/:handle', getUserData);
 
 
 
