@@ -19,4 +19,17 @@ const getUserData = async (req, res)=>{
 
 }
 
+const getUserSocials = async (req,res)=>{
+    const handle = request.params.handle;
+    try {
+        console.log(handle);
+        const user = await user.findOne({handle: handle});
+        const socials = user.socialMedia;
+        return res.json({message: 'found', socials, status: 'success'});
+        
+    } catch (error) {
+        return res.json({status: 'error', error: error.message});
+    }
+}
+
 module.exports = {getUserData};
